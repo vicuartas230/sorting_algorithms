@@ -104,7 +104,6 @@ void swap_middle(listint_t **list, listint_t *tmp)
 			tmp->prev = tmp2;
 			tmp2->prev->next = tmp2;
 			print_list(*list);
-			/* swap_middle(list, tmp); */
 		}
 		else if (tmp->prev)
 		{

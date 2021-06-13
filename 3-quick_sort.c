@@ -10,47 +10,59 @@
 
 void quick_sort(int *array, size_t size)
 {
-    q_s(array, 0, size - 1, size);
+	recursion_quick_sort(array, 0, size - 1, size);
 }
 
 /**
+ * recursion_quick_sort - This function sort a set the integers.
+ * @array: The set of integers to sort.
+ * @lower: The lower limit of the array.
+ * @upper: The upper limit of the array.
+ * @size: The length of the array.
+ * Return: Nothing.
  */
 
-void q_s(int *array, int lower, int higher, size_t size)
+void recursion_quick_sort(int *array, int lower, int upper, size_t size)
 {
-    int pivot = 0;
+	int pivot = 0;
 
-    print_array(array, size);
-    if (lower < higher)
-    {
-        pivot = division(array, lower, higher);
-        q_s(array, lower, pivot - 1, size);
-        q_s(array, pivot + 1, higher, size);
-    }
+	if (lower < upper)
+	{
+		pivot = division(array, lower, upper, size);
+		recursion_quick_sort(array, lower, pivot - 1, size);
+		recursion_quick_sort(array, pivot + 1, upper, size);
+	}
 }
 
 /**
+ * division - This function returns the position of the pivot number.
+ * @array: The set of integers to sort.
+ * @lower: The lower limit of the array.
+ * @upper: The upper limit of the array.
+ * @size: The length of the array.
+ * Return: The position of the pivot number.
  */
 
-int division(int *array, int lower, int higher)
+int division(int *array, int lower, int upper, size_t size)
 {
-    int pivot = 0, aux = 0, i = 0, j = lower;
+	int pivot = 0, aux = 0, i = 0, j = lower;
 
-    pivot = array[higher];
-    i = lower;
-    while (j < higher)
-    {
-        if (array[j] < pivot)
-        {
-            aux = array[i];
-            array[i] = array[j];
-            array[j] = aux;
-            i++;
-        }
-        j++;
-    }
-    aux = array[i];
-    array[i] = array[higher];
-    array[higher] = aux;
-    return (i);
+	pivot = array[upper];
+	i = lower;
+	while (j < upper)
+	{
+		if (array[j] < pivot)
+		{
+			aux = array[i];
+			array[i] = array[j];
+			array[j] = aux;
+			i++;
+		}
+		j++;
+	}
+	aux = array[i];
+	array[i] = array[upper];
+	array[upper] = aux;
+	print_array(array, size);
+	return (i);
 }

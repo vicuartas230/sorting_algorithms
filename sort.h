@@ -29,7 +29,7 @@ void swap_start(listint_t **list, listint_t *tmp);
 void swap_middle(listint_t **list, listint_t *tmp);
 void swap_end(listint_t **list, listint_t *tmp);
 void swap(listint_t **list, listint_t *tmp);
-int division(int *array, int lower, int higher);
-void q_s(int *array, int lower, int higher, size_t size);
+int division(int *array, int lower, int upper, size_t size);
+void recursion_quick_sort(int *array, int lower, int higher, size_t size);
 
 #endif

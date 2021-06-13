@@ -29,5 +29,7 @@ void swap_start(listint_t **list, listint_t *tmp);
 void swap_middle(listint_t **list, listint_t *tmp);
 void swap_end(listint_t **list, listint_t *tmp);
 void swap(listint_t **list, listint_t *tmp);
+int division(int *array, int lower, int higher);
+void q_s(int *array, int lower, int higher, size_t size);
 
 #endif

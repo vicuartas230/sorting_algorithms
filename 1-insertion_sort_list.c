@@ -14,10 +14,23 @@ void insertion_sort_list(listint_t **list)
 
 	while (tmp->next)
 	{
+		if (tmp->next->n < tmp->n && tmp == *list && !tmp->next->next)
+		{
+			*list = tmp->next;
+			tmp->prev = *list;
+			(*list)->next = tmp;
+			(*list)->prev = NULL;
+			tmp->next = NULL;
+			print_list(*list);
+			break;
+		}
 		if (tmp->next->n < tmp->n && tmp == *list)
 			swap_start(list, tmp);
 		if (tmp->next->n < tmp->n && tmp->next->next)
+		{
 			swap_middle(list, tmp);
+			tmp = tmp->prev;
+		}
 		if (tmp->next->n < tmp->n && !tmp->next->next)
 		{
 			swap_end(list, tmp);

@@ -16,12 +16,8 @@ void insertion_sort_list(listint_t **list)
 	{
 		if (tmp->next->n < tmp->n && tmp == *list && !tmp->next->next)
 		{
-			*list = tmp->next;
-			tmp->prev = *list;
-			(*list)->next = tmp;
-			(*list)->prev = NULL;
-			tmp->next = NULL;
-			print_list(*list);
+			*list = tmp->next, tmp->prev = *list, (*list)->next = tmp;
+			(*list)->prev = NULL, tmp->next = NULL, print_list(*list);
 			break;
 		}
 		if (tmp->next->n < tmp->n && tmp == *list)
@@ -41,21 +37,13 @@ void insertion_sort_list(listint_t **list)
 			{
 				flag = 1;
 				if (tmp->prev->prev)
-				{
-					tmp = tmp->prev;
-					swap_middle(list, tmp);
-				}
+					tmp = tmp->prev, swap_middle(list, tmp);
 				else if (tmp->prev)
-				{
 					swap(list, tmp);
-				}
 				tmp = tmp->prev;
 			}
 			if (flag)
-			{
-				tmp = hold->prev;
-				flag = 0;
-			}
+				tmp = hold->prev, flag = 0;
 		}
 		tmp = tmp->next;
 	}

@@ -21,7 +21,7 @@ void insertion_sort_list(listint_t **list)
 			break;
 		}
 		else if (tmp->next->n < tmp->n && tmp == *list)
-			swap_start(list, tmp);
+			swap_start(list, tmp), tmp = tmp->prev;
 		else if (tmp->next->n < tmp->n && tmp->next->next)
 		{
 			swap_middle(list, tmp);

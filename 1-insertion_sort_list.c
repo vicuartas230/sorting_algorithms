@@ -12,6 +12,8 @@ void insertion_sort_list(listint_t **list)
 	listint_t *tmp = *list, *hold = NULL;
 	int flag = 0;
 
+	if (!list || *list)
+		return;
 	while (tmp->next)
 	{
 		if (tmp->next->n < tmp->n && tmp == *list && !tmp->next->next)

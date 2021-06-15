@@ -49,9 +49,9 @@ int division(int *array, int lower, int upper, size_t size)
 
 	pivot = array[upper];
 	i = lower - 1;
-	while (j < upper)
+	while (j <= upper - 1)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
 			i++;
 			aux = array[i];

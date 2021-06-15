@@ -48,21 +48,24 @@ int division(int *array, int lower, int upper, size_t size)
 	int pivot = 0, aux = 0, i = 0, j = lower;
 
 	pivot = array[upper];
-	i = lower;
+	i = lower - 1;
 	while (j < upper)
 	{
 		if (array[j] < pivot)
 		{
+			i++;
 			aux = array[i];
 			array[i] = array[j];
 			array[j] = aux;
-			i++;
+			if (i != j)
+				print_array(array, size);
 		}
 		j++;
 	}
-	aux = array[i];
-	array[i] = array[upper];
+	aux = array[i + 1];
+	array[i + 1] = array[upper];
 	array[upper] = aux;
-	print_array(array, size);
-	return (i);
+	if (i + 1 != j)
+		print_array(array, size);
+	return (i + 1);
 }

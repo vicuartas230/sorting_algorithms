@@ -33,8 +33,8 @@ int division(int *array, int lower, int upper, size_t size);
 void recursion_quick_sort(int *array, int lower, int higher, size_t size);
 void shell_sort(int *array, size_t size);
 void merge_sort(int *array, size_t size);
-void top_down(int *array, int start, int end);
-void merge(int *array, int start, int mid, int end);
+void top_down(int *array, int start, int end, int *array_aux);
+void merge(int *array, int start, int mid, int end, int *array_aux);
 void print_before(int *array, int start, int middle, int end);
 void print_after(int *array, int start, int end);
 

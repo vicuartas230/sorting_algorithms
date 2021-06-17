@@ -10,7 +10,10 @@
 
 void merge_sort(int *array, size_t size)
 {
-	top_down(array, size - size, size - 1);
+	int *array_aux = malloc(size * sizeof(int));
+
+	top_down(array, size - size, size - 1, array_aux);
+	free(array_aux);
 }
 
 /**
@@ -19,19 +22,20 @@ void merge_sort(int *array, size_t size)
  * @array: The set of integers to divide.
  * @start: The first element of the list.
  * @end: The last element of the list.
+ * @array_aux: The array to keep the temporary values.
  * Return: Nothing.
  */
 
-void top_down(int *array, int start, int end)
+void top_down(int *array, int start, int end, int *array_aux)
 {
 	int mid = 0;
 
 	if (start < end)
 	{
 		mid = (start + end - 1) / 2;
-		top_down(array, start, mid);
-		top_down(array, mid + 1, end);
-		merge(array, start, mid, end);
+		top_down(array, start, mid, array_aux);
+		top_down(array, mid + 1, end, array_aux);
+		merge(array, start, mid, end, array_aux);
 	}
 }
 
@@ -41,12 +45,12 @@ void top_down(int *array, int start, int end)
  * @start: The start of the sublist.
  * @mid: The middle of the sublist.
  * @end: The end of the sublist.
+ * @array_aux: The array to keep the temporary values.
  * return: Nothing.
  */
 
-void merge(int *array, int start, int mid, int end)
+void merge(int *array, int start, int mid, int end, int *array_aux)
 {
-	int *temp = malloc((end - start + 1) * sizeof(int));
 	int i = start, j = mid + 1, k = 0;
 
 	print_before(array, start, mid, end);
@@ -54,34 +58,33 @@ void merge(int *array, int start, int mid, int end)
 	{
 		if (array[i] <= array[j])
 		{
-			temp[k] = array[i];
+			array_aux[k] = array[i];
 			k += 1, i += 1;
 		}
 		else
 		{
-			temp[k] = array[j];
+			array_aux[k] = array[j];
 			k += 1, j += 1;
 		}
 	}
 	while (i <= mid)
 	{
-		temp[k] = array[i];
+		array_aux[k] = array[i];
 		k += 1, i += 1;
 	}
 	while (j <= end)
 	{
-		temp[k] = array[j];
+		array_aux[k] = array[j];
 		k += 1, j += 1;
 	}
 	i = start;
 	while (i <= end)
 	{
-		array[i] = temp[i - start];
+		array[i] = array_aux[i - start];
 		i++;
 	}
 	printf("\n");
 	print_after(array, start, end);
-	free(temp);
 }
 
 /**
